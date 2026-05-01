@@ -97,6 +97,46 @@ def stage_discover_and_fetch(conn, source_configs) -> tuple[int, int]:
     return discovered, fetch_failures
 
 
+def stage_retry_transcripts(conn, source_configs) -> tuple[int, int]:
+    """Retry transcript fetch for items stuck in `no_transcript` state.
+
+    Useful after switching transcript backends (e.g., new proxy or SaaS
+    provider) — the listing wouldn't re-discover these items because
+    sources.last_checked_at has already moved past their publish dates.
+    """
+    rows = db.items_in_status(conn, "no_transcript")
+    if not rows:
+        return 0, 0
+    source_by_id: dict[int, YouTubeSource] = {}
+    for cfg in source_configs:
+        if not cfg.active:
+            continue
+        row = conn.execute(
+            "SELECT id FROM sources WHERE type = ? AND external_id = ?",
+            (cfg.type, cfg.id),
+        ).fetchone()
+        if row:
+            source_by_id[row["id"]] = _build_source(cfg)
+    ok = 0
+    failed = 0
+    for item in rows:
+        source = source_by_id.get(item["source_id"])
+        if source is None:
+            continue
+        try:
+            text = source.fetch_transcript(item["external_id"])
+        except Exception as e:
+            logger.warning("[retry] error fetching %s: %s", item["external_id"], e)
+            failed += 1
+            continue
+        if text:
+            db.set_item_transcript(conn, item["id"], text)
+            ok += 1
+            logger.info("[retry] transcript ok for item %d", item["id"])
+        # else: leave in no_transcript; it'll be eligible next run
+    return ok, failed
+
+
 def stage_summarize(conn) -> tuple[int, int]:
     items = db.items_in_status(conn, "transcript_fetched")
     ok = 0
@@ -251,6 +291,10 @@ def run() -> int:
     try:
         d, _fail_fetch = stage_discover_and_fetch(conn, source_configs)
         discovered += d
+
+        retried_ok, _retry_fail = stage_retry_transcripts(conn, source_configs)
+        if retried_ok:
+            logger.info("[retry] recovered transcripts for %d previously-skipped items", retried_ok)
 
         ok, f = stage_summarize(conn)
         processed += ok

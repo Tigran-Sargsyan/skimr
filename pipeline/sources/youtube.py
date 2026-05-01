@@ -1,4 +1,5 @@
 import logging
+import os
 import re
 import time
 import urllib.error
@@ -13,7 +14,9 @@ from youtube_transcript_api._errors import (
     TranscriptsDisabled,
     VideoUnavailable,
 )
+from youtube_transcript_api.proxies import WebshareProxyConfig
 
+from . import searchapi
 from .base import Source, VideoMetadata
 
 logger = logging.getLogger("skimr.youtube")
@@ -35,6 +38,17 @@ def _http_get(url: str, timeout: float = 30.0) -> str:
     req = urllib.request.Request(url, headers={"User-Agent": _USER_AGENT})
     with urllib.request.urlopen(req, timeout=timeout) as resp:
         return resp.read().decode("utf-8", errors="replace")
+
+
+def _build_transcript_api() -> YouTubeTranscriptApi:
+    """Construct YouTubeTranscriptApi with a Webshare proxy if creds are set."""
+    user = os.environ.get("WEBSHARE_PROXY_USERNAME")
+    password = os.environ.get("WEBSHARE_PROXY_PASSWORD")
+    if user and password:
+        return YouTubeTranscriptApi(
+            proxy_config=WebshareProxyConfig(proxy_username=user, proxy_password=password)
+        )
+    return YouTubeTranscriptApi()
 
 
 class YouTubeSource(Source):
@@ -115,7 +129,17 @@ class YouTubeSource(Source):
     def fetch_transcript(self, video_id: str) -> str | None:
         # Polite delay before each transcript fetch.
         time.sleep(2)
-        api = YouTubeTranscriptApi()
+        # Prefer SearchAPI when configured — it handles IP blocks for us.
+        searchapi_key = os.environ.get("SEARCHAPI_KEY")
+        if searchapi_key:
+            text = searchapi.fetch_transcript(video_id, searchapi_key)
+            if text:
+                return _WHITESPACE.sub(" ", text).strip()
+            # If SearchAPI returns None we don't fall through to direct fetch
+            # (it would just hit the same IP block). Return None so the item
+            # is marked no_transcript and skipped.
+            return None
+        api = _build_transcript_api()
         try:
             transcript_list = api.list(video_id)
         except (TranscriptsDisabled, VideoUnavailable, NoTranscriptFound):
