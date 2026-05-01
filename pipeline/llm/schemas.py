@@ -13,13 +13,23 @@ class SummaryOutput(BaseModel):
         ...,
         min_length=3,
         max_length=8,
-        description="Each is a complete claim, not a topic.",
+        description=(
+            "Each item is ONE atomic claim, ≤30 words, written as a single sentence "
+            "with no internal line breaks, no semicolons stitching multiple ideas, "
+            "no lists embedded in the string. If you have more ideas than fit in 8 "
+            "items, push the rest into full_notes — never cram multiple claims into "
+            "one bullet."
+        ),
     )
     full_notes: str = Field(
         ...,
         description=(
-            "300-500 word structured prose with subheadings. For short videos under "
-            "5 minutes, scale down to 100-200 words. Markdown formatting."
+            "Markdown-formatted structured prose with `## Subheading` sections. "
+            "Length should scale with the substance of the source: ~150 words for "
+            "videos under 5 minutes, ~400 words for 10–20 minute videos, and "
+            "800–1500 words for long-form (45+ minute) interviews and deep-dives. "
+            "When the transcript is rich, prefer depth here over compression — the "
+            "user reads this section as the primary takeaway, not the key_points list."
         ),
     )
 

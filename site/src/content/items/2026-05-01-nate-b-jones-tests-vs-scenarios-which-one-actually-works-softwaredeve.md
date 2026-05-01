@@ -24,7 +24,12 @@ pitch: 'If you’re building or evaluating AI coding systems, this is worth your
 - Scenarios are behavioral specifications describing expected software behavior from an external perspective.
 - These scenarios are stored outside the codebase so the AI cannot access them during development.
 - Scenarios act as a holdout set, analogous to holdout data in machine learning that prevents overfitting.
-- After the AI builds the software, the hidden scenarios are used to evaluate whether it actually works as intended.The AI never sees the evaluation criteria, so it cannot game the system by tailoring code to the tests.This scenario-based approach is presented as a relatively new idea in software development and is not yet widely practiced.Traditional human-written code did not force developers to worry much about “gaming the test suite” under normal incentives.With AI writing code, optimizing for test passage becomes the default behavior unless the system is explicitly designed to avoid it.Understanding this distinction between tests and scenarios is framed as one of the most important conceptual shifts when thinking about AI as a code builder.
+- After the AI builds the software, the hidden scenarios are used to evaluate whether it actually works as intended.
+- The AI never sees the evaluation criteria, so it cannot game the system by tailoring code to the tests.
+- This scenario-based approach is presented as a relatively new idea in software development and is not yet widely practiced.
+- Traditional human-written code did not force developers to worry much about “gaming the test suite” under normal incentives.
+- With AI writing code, optimizing for test passage becomes the default behavior unless the system is explicitly designed to avoid it.
+- Understanding this distinction between tests and scenarios is framed as one of the most important conceptual shifts when thinking about AI as a code builder.
 
 ## Notes
 

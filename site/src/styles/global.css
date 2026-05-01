@@ -7,7 +7,7 @@
   --color-callout-bg: #F5F2EA;
   --font-body: Charter, "Bitstream Charter", "Sitka Text", Cambria, Georgia, serif;
   --font-mono: ui-monospace, "SF Mono", "Cascadia Mono", "Roboto Mono", Menlo, Consolas, monospace;
-  --max-width: 680px;
+  --max-width: 820px;
 }
 
 @media (prefers-color-scheme: dark) {

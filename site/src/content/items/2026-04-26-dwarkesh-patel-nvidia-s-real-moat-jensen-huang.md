@@ -24,7 +24,10 @@ pitch: If you care about the real infrastructure moat behind AI systems, this gi
 - Despite remaining bugs, CUDA and NVIDIA’s stack are highly “wrung out,” providing a reliable foundation for complex AI systems.
 - For any software developer, the most important factor is installed base: they want their software to run on many machines, not just one setup.
 - NVIDIA’s CUDA ecosystem spans several hundred million GPUs across many generations (A10, A100, H100, H200, L‑series, P‑series, etc.).
-- The breadth of NVIDIA’s GPU lineup and form factors lets the same CUDA stack run from data centers down into robots and other devices, increasing reuse of models and code everywhere CUDA exists.NVIDIA GPUs with CUDA are present in every major cloud provider, which is critical for AI builders who may not know in advance which cloud they will use or partner with.CUDA also runs on‑premises, giving developers flexibility to deploy across clouds and private infrastructure without changing their software stack.CUDA’s value comes from three combined factors: the richness of the ecosystem, the vast installed base, and the versatility of deployment locations (clouds and on‑prem).
+- The breadth of NVIDIA’s GPU lineup and form factors lets the same CUDA stack run from data centers down into robots and other devices, increasing reuse of models and code everywhere CUDA exists.
+- NVIDIA GPUs with CUDA are present in every major cloud provider, which is critical for AI builders who may not know in advance which cloud they will use or partner with.
+- CUDA also runs on‑premises, giving developers flexibility to deploy across clouds and private infrastructure without changing their software stack.
+- CUDA’s value comes from three combined factors: the richness of the ecosystem, the vast installed base, and the versatility of deployment locations (clouds and on‑prem).
 
 ## Notes
 
