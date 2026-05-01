@@ -1,10 +1,11 @@
 import logging
 import re
 import time
+import urllib.error
+import urllib.request
+import xml.etree.ElementTree as ET
 from datetime import datetime, timezone
-from typing import Any
 
-import yt_dlp
 from youtube_transcript_api import YouTubeTranscriptApi
 from youtube_transcript_api._errors import (
     CouldNotRetrieveTranscript,
@@ -18,70 +19,84 @@ from .base import Source, VideoMetadata
 logger = logging.getLogger("skimr.youtube")
 
 _WHITESPACE = re.compile(r"\s+")
+_CHANNEL_ID_RE = re.compile(r'"(?:channelId|externalId)":"(UC[\w-]{22})"')
+_USER_AGENT = (
+    "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) "
+    "AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0 Safari/537.36"
+)
+_ATOM_NS = {
+    "atom": "http://www.w3.org/2005/Atom",
+    "yt": "http://www.youtube.com/xml/schemas/2015",
+    "media": "http://search.yahoo.com/mrss/",
+}
+
+
+def _http_get(url: str, timeout: float = 30.0) -> str:
+    req = urllib.request.Request(url, headers={"User-Agent": _USER_AGENT})
+    with urllib.request.urlopen(req, timeout=timeout) as resp:
+        return resp.read().decode("utf-8", errors="replace")
 
 
 class YouTubeSource(Source):
     def __init__(self, name: str, channel_handle: str, notes: str = ""):
         self.name = name
         self.notes = notes
-        # Normalize: ensure handle starts with @
-        self.handle = channel_handle if channel_handle.startswith("@") else f"@{channel_handle}"
+        # Normalize: ensure handle starts with @ (or accept a bare UCxxx channel id).
+        if channel_handle.startswith("UC") and len(channel_handle) == 24:
+            self.handle = channel_handle
+            self._channel_id_cached: str | None = channel_handle
+        else:
+            self.handle = channel_handle if channel_handle.startswith("@") else f"@{channel_handle}"
+            self._channel_id_cached = None
 
-    def _channel_videos_url(self) -> str:
-        return f"https://www.youtube.com/{self.handle}/videos"
+    def _resolve_channel_id(self) -> str | None:
+        if self._channel_id_cached:
+            return self._channel_id_cached
+        url = f"https://www.youtube.com/{self.handle}"
+        try:
+            html = _http_get(url)
+        except (urllib.error.URLError, urllib.error.HTTPError, TimeoutError) as e:
+            logger.warning("channel page fetch failed for %s: %s", self.handle, e)
+            return None
+        match = _CHANNEL_ID_RE.search(html)
+        if not match:
+            logger.warning("could not find channelId in %s", url)
+            return None
+        self._channel_id_cached = match.group(1)
+        return self._channel_id_cached
 
     def list_recent_videos(self, since: datetime | None) -> list[VideoMetadata]:
-        url = self._channel_videos_url()
-        ydl_opts = {
-            "quiet": True,
-            "no_warnings": True,
-            "extract_flat": "in_playlist",
-            "skip_download": True,
-            "playlistend": 30,
-        }
-        with yt_dlp.YoutubeDL(ydl_opts) as ydl:
-            try:
-                info = ydl.extract_info(url, download=False)
-            except Exception as e:
-                logger.warning("yt-dlp failed listing %s: %s", self.handle, e)
-                return []
-
-        entries: list[dict[str, Any]] = []
-        for entry in info.get("entries") or []:
-            if not entry:
-                continue
-            # YouTube channels expose top-level tabs as nested entries on some yt-dlp versions.
-            if entry.get("_type") == "playlist" and entry.get("entries"):
-                entries.extend(e for e in entry["entries"] if e)
-            else:
-                entries.append(entry)
+        channel_id = self._resolve_channel_id()
+        if not channel_id:
+            return []
+        feed_url = f"https://www.youtube.com/feeds/videos.xml?channel_id={channel_id}"
+        try:
+            xml_text = _http_get(feed_url)
+        except (urllib.error.URLError, urllib.error.HTTPError, TimeoutError) as e:
+            logger.warning("feed fetch failed for %s: %s", channel_id, e)
+            return []
+        try:
+            root = ET.fromstring(xml_text)
+        except ET.ParseError as e:
+            logger.warning("feed parse failed for %s: %s", channel_id, e)
+            return []
 
         results: list[VideoMetadata] = []
-        detail_opts = {"quiet": True, "no_warnings": True, "skip_download": True}
-        for entry in entries[:30]:
-            video_id = entry.get("id")
-            if not video_id:
+        for entry in root.findall("atom:entry", _ATOM_NS):
+            video_id_el = entry.find("yt:videoId", _ATOM_NS)
+            title_el = entry.find("atom:title", _ATOM_NS)
+            published_el = entry.find("atom:published", _ATOM_NS)
+            if video_id_el is None or title_el is None or published_el is None:
                 continue
-            timestamp = entry.get("timestamp") or entry.get("release_timestamp")
-            duration = entry.get("duration")
-            title = entry.get("title") or ""
-            if timestamp is None:
-                # Fall back to per-video metadata fetch.
-                try:
-                    with yt_dlp.YoutubeDL(detail_opts) as ydl2:
-                        detail = ydl2.extract_info(
-                            f"https://www.youtube.com/watch?v={video_id}", download=False
-                        )
-                    timestamp = detail.get("timestamp") or detail.get("release_timestamp")
-                    duration = detail.get("duration") or duration
-                    title = detail.get("title") or title
-                except Exception as e:
-                    logger.warning("yt-dlp detail fetch failed for %s: %s", video_id, e)
-                    continue
-            if timestamp is None:
-                logger.warning("no timestamp for %s, skipping", video_id)
+            video_id = (video_id_el.text or "").strip()
+            title = (title_el.text or "").strip()
+            published_at_raw = (published_el.text or "").strip()
+            if not (video_id and title and published_at_raw):
                 continue
-            published_dt = datetime.fromtimestamp(int(timestamp), tz=timezone.utc)
+            try:
+                published_dt = datetime.fromisoformat(published_at_raw.replace("Z", "+00:00"))
+            except ValueError:
+                continue
             if since and published_dt < since:
                 continue
             results.append(
@@ -89,8 +104,10 @@ class YouTubeSource(Source):
                     external_id=video_id,
                     title=title,
                     url=f"https://www.youtube.com/watch?v={video_id}",
-                    published_at=published_dt.strftime("%Y-%m-%dT%H:%M:%SZ"),
-                    duration_seconds=int(duration) if duration else None,
+                    published_at=published_dt.astimezone(timezone.utc).strftime(
+                        "%Y-%m-%dT%H:%M:%SZ"
+                    ),
+                    duration_seconds=None,  # not exposed in the Atom feed
                 )
             )
         return results
