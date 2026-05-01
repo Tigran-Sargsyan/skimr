@@ -1,0 +1,21 @@
+sources:
+  - name: Dwarkesh Patel
+    type: youtube
+    id: "@DwarkeshPatel"
+    active: true
+    notes: |
+      Long-form interviews with researchers and operators. High-signal.
+
+  - name: Fireship
+    type: youtube
+    id: "@Fireship"
+    active: true
+    notes: |
+      Short, punchy tech news with strong opinion takes.
+
+  - name: ThePrimeTimeagen
+    type: youtube
+    id: "@ThePrimeTimeagen"
+    active: true
+    notes: |
+      Programming culture and code reviews. Skim for substance, skip the rants.

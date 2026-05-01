@@ -1,0 +1,90 @@
+---
+import { getCollection, type CollectionEntry } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ItemCard from '../../components/ItemCard.astro';
+import ThemeFilter from '../../components/ThemeFilter.astro';
+
+const PAGE_SIZE = 30;
+const THEMES = ['tech', 'thinking', 'culture', 'business', 'science'] as const;
+
+export async function getStaticPaths() {
+  const all = await getCollection('items');
+  all.sort(
+    (a, b) =>
+      new Date(b.data.published_at).getTime() - new Date(a.data.published_at).getTime(),
+  );
+
+  const PAGE_SIZE = 30;
+  const THEMES = ['tech', 'thinking', 'culture', 'business', 'science'] as const;
+
+  const paths: any[] = [];
+  const buildPages = (items: CollectionEntry<'items'>[], themeSlug?: string) => {
+    const totalPages = Math.max(1, Math.ceil(items.length / PAGE_SIZE));
+    for (let p = 1; p <= totalPages; p++) {
+      const segs: string[] = [];
+      if (themeSlug) segs.push(themeSlug);
+      if (p > 1) segs.push(String(p));
+      const slug = segs.length === 0 ? undefined : segs.join('/');
+      const start = (p - 1) * PAGE_SIZE;
+      paths.push({
+        params: { slug },
+        props: {
+          items: items.slice(start, start + PAGE_SIZE),
+          currentPage: p,
+          totalPages,
+          theme: themeSlug ?? 'all',
+        },
+      });
+    }
+  };
+
+  buildPages(all);
+  for (const t of THEMES) {
+    const filtered = all.filter(
+      (i) => i.data.primary_theme === t || i.data.secondary_theme === t,
+    );
+    if (filtered.length > 0) buildPages(filtered, t);
+  }
+  return paths;
+}
+
+interface Props {
+  items: CollectionEntry<'items'>[];
+  currentPage: number;
+  totalPages: number;
+  theme: string;
+}
+const { items, currentPage, totalPages, theme } = Astro.props as Props;
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const themeSegment = theme === 'all' ? '' : `/${theme}`;
+const prevHref =
+  currentPage === 2
+    ? `${base}/archive${themeSegment}`
+    : currentPage > 2
+    ? `${base}/archive${themeSegment}/${currentPage - 1}`
+    : null;
+const nextHref =
+  currentPage < totalPages
+    ? `${base}/archive${themeSegment}/${currentPage + 1}`
+    : null;
+
+const heading = theme === 'all' ? 'Archive' : `Archive · ${theme}`;
+---
+<BaseLayout title={`skimr — ${heading}`}>
+  <h1>{heading}</h1>
+  <ThemeFilter current={theme} />
+  {items.length === 0 ? (
+    <p class="empty-state">No items yet.</p>
+  ) : (
+    <div>
+      {items.map((item) => <ItemCard item={item} variant="compact" />)}
+    </div>
+  )}
+  {totalPages > 1 && (
+    <nav class="pagination" aria-label="Pagination">
+      {prevHref ? <a href={prevHref}>← newer</a> : <span>← newer</span>}
+      <span>page {currentPage} of {totalPages}</span>
+      {nextHref ? <a href={nextHref}>older →</a> : <span>older →</span>}
+    </nav>
+  )}
+</BaseLayout>

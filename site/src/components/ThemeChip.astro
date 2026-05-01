@@ -1,0 +1,8 @@
+---
+interface Props {
+  theme: string;
+  primary?: boolean;
+}
+const { theme, primary = false } = Astro.props;
+---
+<span class={`theme-chip${primary ? ' is-primary' : ''}`}>{theme}</span>

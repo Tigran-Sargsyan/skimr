@@ -1,0 +1,77 @@
+---
+import { getCollection, type CollectionEntry } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ThemeChip from '../../components/ThemeChip.astro';
+
+export async function getStaticPaths() {
+  const items = await getCollection('items');
+  return items.map((item) => ({
+    params: { slug: item.slug },
+    props: { item },
+  }));
+}
+
+interface Props {
+  item: CollectionEntry<'items'>;
+}
+const { item } = Astro.props as Props;
+const data = item.data;
+const { Content } = await item.render();
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+
+const publishedDate = new Date(data.published_at);
+const dateLabel = publishedDate.toLocaleDateString('en-US', {
+  year: 'numeric',
+  month: 'short',
+  day: 'numeric',
+});
+
+function formatDuration(seconds: number | null) {
+  if (!seconds) return null;
+  const m = Math.round(seconds / 60);
+  if (m < 60) return `${m} min`;
+  const h = Math.floor(m / 60);
+  const r = m % 60;
+  return r === 0 ? `${h} hr` : `${h} hr ${r} min`;
+}
+const durationLabel = formatDuration(data.duration_seconds);
+---
+<BaseLayout title={`${data.title} — skimr`} description={data.tldr}>
+  <article class="item-page">
+    <header class="item-header">
+      <h1>{data.title}</h1>
+      <div class="item-meta">
+        <span><a href={`${base}/sources/${data.source_slug}`}>{data.author}</a></span>
+        <span class="item-meta-divider">{dateLabel}</span>
+        {durationLabel && <span class="item-meta-divider">{durationLabel}</span>}
+      </div>
+    </header>
+
+    <p class="item-hook-callout">{data.hook}</p>
+
+    <div class="item-tldr-block"><p>{data.tldr}</p></div>
+
+    <hr />
+
+    <div class="notes">
+      <Content />
+    </div>
+
+    <hr />
+
+    <p class="pitch-callout">Why this was surfaced to you: {data.pitch}</p>
+    {data.caveats && <p class="skip-callout">Skip if: {data.caveats}</p>}
+
+    <div class="theme-row">
+      <ThemeChip theme={data.primary_theme} primary />
+      {data.secondary_theme && <ThemeChip theme={data.secondary_theme} />}
+    </div>
+
+    <p>
+      <a class="watch-button" href={data.url} target="_blank" rel="noopener noreferrer">
+        Watch on YouTube →
+      </a>
+    </p>
+  </article>
+</BaseLayout>

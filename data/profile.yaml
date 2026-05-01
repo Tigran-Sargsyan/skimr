@@ -1,0 +1,85 @@
+identity: |
+  AI and software engineer working on LLM agents, RAG systems, and AI 
+  platform infrastructure. Day-to-day work spans agent tooling, prompt 
+  observability (Langfuse), vector search (Milvus), and async telemetry 
+  pipelines (Celery, Kafka, Prefect). Background in applied mathematics 
+  and a strong interest in the engineering reality of AI systems — 
+  evals, failure modes, production scars, what actually works at scale. 
+  
+  Building an AI-powered chess coaching platform for beginners on the 
+  side, drawing on a competitive chess background (FIDE Master, World 
+  Corporate Chess Champion 2024). Drawn to deliberate practice, the gap 
+  between knowing and doing, and thinkers like Taleb who argue against 
+  consensus with rigor. Starting an M.S. in Computer Science at Georgia 
+  Tech in Fall 2026.
+
+themes:
+  tech:
+    weight: high
+    description: |
+      Software engineering, AI/ML, LLM agents, RAG, vector search, 
+      distributed systems, databases, observability, developer tooling, 
+      infrastructure (Kubernetes, Terraform, GCP). Strong preference 
+      for production substance — people who have shipped real systems 
+      and have scars to show. Want technical depth: real architecture 
+      decisions, real evals, real failure modes, real performance 
+      numbers. Pieces about the craft of programming itself — debugging, 
+      code design, testing — are welcome. Not interested in surface-level 
+      "AI is changing everything" pieces or speculation without grounding.
+
+  thinking:
+    weight: high
+    description: |
+      Epistemics, decision-making under uncertainty, deliberate practice, 
+      expertise development. Bayesian reasoning, calibration, forecasting. 
+      The gap between knowing and doing, between explicit knowledge and 
+      tacit skill. Skeptical of consensus, drawn to people arguing for 
+      unfashionable positions with rigor (Taleb-flavored). Philosophy of 
+      science and methodology when grounded in real examples.
+
+  culture:
+    weight: high
+    description: |
+      Books, films, history, broader cultural ideas. Drawn to films with 
+      layered narratives and intellectual texture (e.g., Oldboy, 
+      Memories of Murder — directors who treat audiences as adults). 
+      Literary fiction with substance. History that connects to 
+      present-day questions. Less interested in mainstream entertainment 
+      commentary, celebrity-driven content, or surface-level reviews 
+      that don't engage with the work.
+
+  business:
+    weight: medium
+    description: |
+      Startups, product strategy, the economics of software companies, 
+      hiring, founder lessons. Concrete operating stories ("here's what 
+      we tried, here's what broke") over abstract strategy frameworks. 
+      Tech industry analysis with substance — how companies actually 
+      work, not how they're branded.
+
+  science:
+    weight: medium
+    description: |
+      Applied mathematics, physics, biology, neuroscience, cognitive 
+      science. Especially when it touches expertise, learning, perception, 
+      or decision-making. Less interested in pure methodology surveys 
+      or popular science with no depth.
+
+avoid:
+  - generic AI hype with no technical substance
+  - morning routine, productivity, or "habits of high performers" content
+  - news commentary that won't matter past a week
+  - listicles or "X things you must know" framings
+  - content that's mostly the speaker's personal brand performance
+  - tutorials at a level below working engineer (e.g., "what is a function")
+  - hot takes on consumer tech launches without architectural depth
+
+style_preferences: |
+  Long-form is fine if it earns the length. Concrete examples and real 
+  numbers beat abstract frameworks. Drawn to people who think against 
+  the grain with rigor — contrarian-with-receipts, not contrarian-as-pose. 
+  Prefer pieces where the speaker is clearly closer to the work than 
+  the discourse. A 30-minute video that earns its length is better than 
+  a 5-minute one that says nothing specific. Short pieces (Fireship-
+  style) are welcome when they pack genuine information density — 
+  but skip them if they're just news roundup with no analysis.

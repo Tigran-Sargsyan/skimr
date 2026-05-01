@@ -1,0 +1,36 @@
+identity: |
+  Replace this with a multi-line description of who you are, what you work on,
+  and what you care about. The scoring step uses this verbatim, so be honest
+  and specific. A few paragraphs is fine.
+
+themes:
+  tech:
+    weight: high
+    description: |
+      What within tech do you actually want to read about. Be specific —
+      "AI agents and applied ML" beats "AI in general".
+  thinking:
+    weight: high
+    description: |
+      Epistemics, decision-making, philosophy, learning, expertise.
+  business:
+    weight: medium
+    description: |
+      Startups, strategy, economics, markets, management.
+  science:
+    weight: medium
+    description: |
+      Physics, biology, neuroscience, research methodology, mathematics.
+  culture:
+    weight: low
+    description: |
+      Books, films, history, broader cultural ideas.
+
+avoid:
+  - hype-driven crypto content
+  - low-substance reaction videos
+  - listicles and engagement-bait
+
+style_preferences: |
+  Prefer depth over brevity. Skip filler. If something doesn't have a real
+  argument behind it, score it low.

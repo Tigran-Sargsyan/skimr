@@ -1,0 +1,48 @@
+sources:
+  - name: Nate B Jones
+    type: youtube
+    id: "@NateBJones"
+    active: true
+    notes: |
+      AI / product commentary. Watch for substance vs. trend-chasing; 
+      bias toward pieces with concrete examples or specific tools.
+
+  - name: Dwarkesh Patel
+    type: youtube
+    id: "@DwarkeshPatel"
+    active: true
+    notes: |
+      Long-form interviews on AI, economics, science, history. Generally 
+      high signal — conversations with researchers and operators. 
+      Episodes can run 1-3 hours; full notes section should accommodate 
+      depth.
+
+  - name: Fireship
+    type: youtube
+    id: "@Fireship"
+    active: true
+    notes: |
+      Short-form (3-8 min) tech news and tutorials. High density. 
+      Summarization should adapt to short transcripts — no need to 
+      pad to 500-word notes for a 4-minute video.
+
+  - name: Mo Bitar (atmoio)
+    type: youtube
+    id: "@atmoio"
+    active: true
+    notes: |
+      Founder of Standard Notes (acquired by Proton, 2024), now building 
+      Shape (shape.work). Skeptical-founder voice on AI — pushes back on 
+      hype with a builder's perspective. Strong fit for "contrarian with 
+      receipts" preference. Score the substance of the argument, not 
+      the provocative title framing.
+
+  - name: ThePrimeTimeagen
+    type: youtube
+    id: "@ThePrimeTimeagen"
+    active: true
+    notes: |
+      Programming, developer culture, code reviews, hot takes. 
+      Performative style — score the substance, not the volume. 
+      Score lower when episode is mostly reactive commentary; higher 
+      when it's a deep dive on a specific technology or codebase.

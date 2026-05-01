@@ -1,0 +1,39 @@
+---
+import { getCollection, type CollectionEntry } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ItemCard from '../../components/ItemCard.astro';
+
+export async function getStaticPaths() {
+  const all = await getCollection('items');
+  const buckets = new Map<string, { name: string; items: CollectionEntry<'items'>[] }>();
+  for (const item of all) {
+    const key = item.data.source_slug;
+    const existing = buckets.get(key);
+    if (existing) existing.items.push(item);
+    else buckets.set(key, { name: item.data.author, items: [item] });
+  }
+  return [...buckets.entries()].map(([slug, { name, items }]) => {
+    items.sort(
+      (a, b) =>
+        new Date(b.data.published_at).getTime() - new Date(a.data.published_at).getTime(),
+    );
+    return { params: { slug }, props: { name, items } };
+  });
+}
+
+interface Props {
+  name: string;
+  items: CollectionEntry<'items'>[];
+}
+const { name, items } = Astro.props as Props;
+---
+<BaseLayout title={`skimr — ${name}`}>
+  <h1>{name}</h1>
+  {items.length === 0 ? (
+    <p class="empty-state">No items yet for this source.</p>
+  ) : (
+    <div>
+      {items.map((item) => <ItemCard item={item} variant="compact" />)}
+    </div>
+  )}
+</BaseLayout>

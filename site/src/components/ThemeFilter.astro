@@ -1,0 +1,16 @@
+---
+interface Props {
+  current?: string;
+}
+const { current = 'all' } = Astro.props;
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const themes = ['all', 'tech', 'thinking', 'culture', 'business', 'science'];
+function hrefFor(t: string) {
+  return t === 'all' ? `${base}/archive` : `${base}/archive/${t}`;
+}
+---
+<nav class="theme-filter" aria-label="Filter by theme">
+  {themes.map((t) => (
+    <a href={hrefFor(t)} aria-current={current === t ? 'page' : undefined}>{t}</a>
+  ))}
+</nav>

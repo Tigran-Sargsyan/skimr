@@ -1,0 +1,55 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ItemCard from '../components/ItemCard.astro';
+
+const limit = Number(import.meta.env.PUBLIC_HOMEPAGE_LIMIT ?? 10);
+
+const all = await getCollection('items');
+
+// Sort by relevance DESC, then published_at DESC.
+all.sort((a, b) => {
+  if (b.data.relevance !== a.data.relevance) return b.data.relevance - a.data.relevance;
+  return new Date(b.data.published_at).getTime() - new Date(a.data.published_at).getTime();
+});
+
+// "Most recent day" = the calendar date of the newest published_at.
+let scoped = all;
+if (all.length > 0) {
+  const newest = [...all].sort(
+    (a, b) => new Date(b.data.published_at).getTime() - new Date(a.data.published_at).getTime(),
+  )[0];
+  const newestDay = new Date(newest.data.published_at).toISOString().slice(0, 10);
+  const sameDay = all.filter(
+    (i) => new Date(i.data.published_at).toISOString().slice(0, 10) === newestDay,
+  );
+  // If the most recent day has fewer items than `limit`, broaden to the latest `limit`
+  // by relevance. Otherwise constrain to that day.
+  scoped = sameDay.length >= limit ? sameDay : all;
+}
+
+const top = scoped.slice(0, limit);
+
+const todayLabel = new Date().toLocaleDateString('en-US', {
+  weekday: 'long',
+  month: 'long',
+  day: 'numeric',
+  year: 'numeric',
+});
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+---
+<BaseLayout title="skimr" description="your daily reading list">
+  <p class="site-subtitle">your daily reading list</p>
+  <p class="date-heading">{todayLabel}</p>
+
+  {top.length === 0 ? (
+    <p class="empty-state">
+      Nothing surfaced today. See the <a href={`${base}/archive`}>archive</a> for past items.
+    </p>
+  ) : (
+    <div>
+      {top.map((item) => <ItemCard item={item} variant="full" />)}
+    </div>
+  )}
+</BaseLayout>

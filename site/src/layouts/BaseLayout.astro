@@ -1,0 +1,48 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const { title = 'skimr', description = 'your daily reading list' } = Astro.props;
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const homeHref = base + '/';
+const archiveHref = base + '/archive';
+const sourcesHref = base + '/sources';
+const currentPath = Astro.url.pathname.replace(/\/$/, '') || '/';
+function isCurrent(href: string) {
+  const normalized = href.replace(/\/$/, '') || '/';
+  return normalized === currentPath ? 'page' : undefined;
+}
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <link rel="icon" type="image/svg+xml" href={base + '/favicon.svg'} />
+    <title>{title}</title>
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="site-header-inner">
+        <a class="site-title" href={homeHref}>skimr</a>
+        <nav class="site-nav">
+          <a href={archiveHref} aria-current={isCurrent(archiveHref)}>archive</a>
+          <a href={sourcesHref} aria-current={isCurrent(sourcesHref)}>sources</a>
+        </nav>
+      </div>
+    </header>
+    <main>
+      <slot />
+    </main>
+    <footer class="site-footer">
+      <a href={homeHref}>home</a>
+      <a href={archiveHref}>archive</a>
+      <a href={sourcesHref}>sources</a>
+    </footer>
+  </body>
+</html>
