@@ -8,62 +8,104 @@ published_at: '2026-04-27T16:59:07Z'
 duration_seconds: null
 primary_theme: culture
 secondary_theme: thinking
-relevance: 7
-hook: A Florentine skyway shows how failed resistance can still tame tyranny.
-tldr: A Medici duke in Florence built an over-head corridor to avoid assassination, but was forced to awkwardly bend it around an ancient noble tower rather than violate deeply rooted property rights. This constraint came from a history of strong republican resistance, which made even a victorious duke cautious and less tyrannical than rulers elsewhere. The speakers argue that such traditions of resistance can keep modern leaders from sliding into full autocracy, as long as people don’t mistake partial victories for total defeat.
-caveats: Skip it if you’re looking for technical depth or anything directly related to AI, systems, or engineering; this is mainly history and political theory.
-pitch: If you want a historically grounded argument about how failed resistance can still constrain power, this gives you the kind of durable, non-hype political thinking you tend to like, with a concrete Florence example instead of abstract hand-waving.
+relevance: 8
+hook: A Florentine bridge shows why failed resistance can still restrain tyranny.
+tldr: Ada Palmer uses a Florentine architectural quirk to illustrate how constrained rulers behave differently from unconstrained tyrants. The Medici dukes, despite ending the republic, still respected entrenched rights out of fear of rebellion, unlike the terrifyingly secure d’Este dukes. Dwarkesh Patel then draws a loose parallel to modern America, arguing that strong republican expectations and visible resistance reduce the risk of outright authoritarianism, even when resistance only partly succeeds.
+caveats: If you want hard technical substance or a tightly argued political analysis rather than a loose historical analogy, this will feel more like an insightful conversation than a decisive thesis.
+pitch: You’ll probably like this because Ada Palmer uses a concrete historical case — the Medici’s compromised tyranny in Florence — to make a rigorous point about how failed resistance can still preserve real constraints on power, which fits your taste for history, epistemics, and non-flashy arguments with receipts.
 ---
 
 ## Key Points
 
-- The Vasari corridor in Florence was built so the dukes could move safely above the streets, reflecting their fear of assassination and thus their weakness relative to their own citizens.
-- Construction of the corridor often involved demolishing upper stories of houses, and most people complied because the duke’s violent reprisals against resistance were visible and terrifying.
-- At one point the corridor meets a 500‑year‑old tower owned by an ancient family tracing its lineage back to a Roman gens, predating the Medici as a named family.
-- When the duke tried to cut through this tower, the family refused, asserting their ancestral property rights and status as older than the Medici.
-- The duke accepted their refusal and routed the corridor around the tower in an awkward square, visibly preserving the tower’s integrity.
-- This decision shows the duke recognized that violating such deeply rooted property rights could trigger rebellion, civil war, or sustained resistance.
-- Florentine dukes, aware of their tenuous power and the city’s republican tradition, behaved more cautiously and therefore allowed more real rights, such as secure property rights, to persist.
-- In Ferrara, Duke Alfonso d’Este, confident in his power, walked naked with a sword to demonstrate his lack of fear of his people, signalling a stronger, more secure tyranny mindset than in Florence.
-- Alfonso and his siblings kidnapped musicians they liked, locked them in towers, and even sent goons to steal each other’s musicians, treating talented people as private captives rather than shared cultural assets.
-- They also recreationally murdered each other’s servants during sibling disputes, extreme behavior enabled by their lack of fear of popular resistance.
-- These practices in Ferrara exemplify rulers who face little constraint from their subjects and thus act as much more thoroughgoing tyrants than the Medici could be.
-- The contrast shows that where resistance has historically been strong—even if it ultimately “loses” and a duke takes power—it can leave a legacy of constraints that moderate later rulers’ behavior.
-- In Florence, the failure of the republic did not erase the norms and expectations it created; those norms forced the duke to respect certain rights to avoid backlash.
-- This illustrates the idea that even when political resistance fails in direct terms (the republic falls), it can still “win” indirectly by making the victor cautious and limiting tyranny.
-- A modern parallel is drawn to the United States, where the presidency is formally powerful, but a strong republican expectation among the populace makes a Putin-style autocracy unlikely in the near term.
-- In the US, the social and political expectation of republican norms ensures that successful overreach faces enough resistance to discourage future escalations.
-- The speakers argue that what weakens resistance today is the tendency to view partial victories as failures, which can demotivate continued resistance and thereby erode those constraining norms.
+- The Vasari Corridor in Florence was built so Medici dukes could move safely above the streets, fearing assassination.
+- The dukes usually destroyed upper stories of private buildings to extend the corridor, and most owners dared not resist.
+- One ancient tower owned by the Minelli family successfully blocked demolition by invoking deep, centuries-old property rights.
+- The duke rerouted the corridor awkwardly around the Minelli tower, fearing rebellion if he violated such core property rights.
+- Palmer contrasts Florence with Ferrara, where the d’Este dukes felt utterly secure and behaved in openly tyrannical ways.
+- Alfonso d’Este flaunted his power with bizarre public nudity and tolerated recreational violence, including kidnapping and murdering servants.
+- Palmer argues that Florence’s defeated republican resistance still constrained Medici tyranny and preserved more rights for citizens.
+- Patel suggests that in the U. S., strong republican expectations and visible resistance lower the odds of a Putin-style authoritarian system, even when resistance is only partially successful.
 
 ## Notes
 
-## The Vasari Corridor and Signs of a Weak Duke
+## The Vasari Corridor and Fearful Power in Florence
 
-In Florence, the Medici dukes built the Vasari corridor, an elevated walkway running above the city and over the Ponte Vecchio. Its purpose was to allow the duke to move between the old civic palace and the newer, grander palace without walking among the people. The very existence of this hidden passage reveals the duke’s fear of assassination by his own subjects and therefore his underlying political weakness.
+Ada Palmer describes a structure in Florence that encodes political history: the Vasari Corridor.
+- The famous Ponte Vecchio bridge holds small jeweler shops along it.
+- At one end begins an overhead passage, the Vasari Corridor, built by the dukes of Florence.
+- Its function was to connect the old city palace, the traditional seat of power and senate, to a newer, grander palace across the river, where dukes could host balls and courtly events.
 
-To construct the corridor, builders cut through rooftops and even removed second stories of private houses. Most owners acquiesced when told, effectively at swordpoint, that the top of their house would be demolished. Their compliance was shaped by visible terror: the palace still displayed severed heads of those who had previously resisted.
+The corridor runs above the city, over roofs and through upper stories, so dukes could traverse Florence without walking at street level.
+- The purpose was security: the dukes feared assassination by their own people.
+- This architectural precaution is, in Palmer’s framing, a sign of a weak duke, one who knows his rule is precarious and therefore must be careful.
 
-## The Minelli Tower: When Property Rights Constrain Power
+## Property Rights and the Minelli Tower
 
-At one key point, the planned path of the corridor encountered a very old tower, about 500 years old, owned by a prominent family (identified as Minelli). This family traced its genealogy back to peers of Julius Caesar and to an ancient Roman gens, predating the Medici as a named family.
+As the Vasari Corridor was constructed, it sometimes required knocking off second stories of private houses.
+- Most owners acquiesced immediately; resistance was dangerous in a regime that displayed severed heads of past resisters on spikes outside the Palazzo Vecchio.
+- The implicit threat of gruesome punishment meant that “Yes, Your Grace, please continue” was the default reaction.
 
-When told the top of their tower would be knocked off, they refused. They insisted the tower was theirs and had been long before the Medici, and that it could not be violated. The duke, recognizing the symbolic and traditional weight of such longstanding property rights, backed down.
+However, the builders reached a 500‑year‑old tower owned by the Minelli family.
+- This family traced its lineage back to peers of Julius Caesar and an ancient Roman gens.
+- Their tower had been theirs “since before the Medici existed as a named family.”
 
-Instead of forcing demolition, he diverted the corridor into an awkward square around the tower. This physical kink in the architecture records a political constraint: the ruler knew that trampling such core, ancient rights might provoke rebellion, civil war, or entrenched resistance. Because these dukes understood their own fragility, they were careful, and meaningful rights—especially property rights—could survive under their rule.
+When the duke’s agents demanded to knock the top off this tower, the Minelli refused.
+- They insisted the tower was theirs and could not be altered.
+- Crucially, the duke backed down.
 
-## Ferrara: Confident Power and Unchecked Tyranny
+Instead of destroying the tower, the Vasari Corridor bends awkwardly around it in a square.
+- Palmer interprets this as evidence that the duke feared the consequences of violating deeply entrenched property rights held by a lineaged family.
+- He anticipated that breaching something so traditional and core to the social order could spark rebellion, civil war, dissent, and broader resistance.
 
-Across the river in Ferrara, the dukes behaved very differently. Duke Alfonso d’Este, feeling secure and unafraid of his people, would walk around Ferrara naked, with a sword in one hand and his genitals in the other, as a demonstration that no one dared harm a duke d’Este.
+Thus, even though the duke was formally a ruler, his behavior was constrained.
+- His awareness of his own weakness and of the people’s latent power preserved certain rights, such as long‑standing property rights.
 
-He and his siblings used their power capriciously: if they liked a musician, they kidnapped them and locked them in a tower so no one else could hear them. They sent goons to kidnap each other’s musicians and even recreationally murdered one another’s servants during family quarrels. Such behavior marks rulers who do not fear their subjects and operate much closer to pure tyranny than the Medici ever could.
+## Ferrara and the Unconstrained d’Este Dukes
 
-## How “Losing” Resistance Still Wins
+Palmer contrasts Florence with Ferrara, another Italian city‑state.
+- Ferrara’s dukes, the d’Este, had fought very hard to consolidate power and felt extraordinarily secure once they achieved it.
 
-The contrast between Florence and Ferrara shows how the intensity of past resistance shapes the nature of later rule. In Florence, the republic ultimately fell; a duke replaced it, and formally the old system vanished. Yet because the republic had fought hard, and people had deeply believed in it, the victorious duke had to govern cautiously.
+Duke Alfonso d’Este illustrates this mindset with extreme behavior.
+- He would walk around Ferrara completely naked, carrying a sword in one hand and his genitals in the other, as a display that no one would dare harm him.
 
-That legacy of struggle meant more rights persisted and the “tyrant” was less tyrannical. Even defeated resistance left behind norms and expectations that constrained power.
+The d’Este siblings engaged in brazen abuses that signal unconstrained power.
+- If they liked a musician, they might kidnap the musician and lock them in a tower so no one else could hear them.
+- They also sent goons to kidnap each other’s favored musicians.
+- When feuding, they would “recreationally” murder one another’s servants.
 
-A parallel is drawn to the modern United States. While the US presidency is constitutionally and by precedent quite powerful, a strong republican expectation among the populace makes a rapid slide into a Putin-style system unlikely. Successful overreach tends to face enough resistance that it discourages future attempts.
+For Palmer, this conduct exemplifies what rulers do when they truly do not fear their people.
+- Feeling confident in their security, they behave much more like tyrants.
+- By comparison, even after the Florentine republic fell, the Medici dukes remained less tyrannical because they felt weaker and had to tread carefully.
 
-What weakens resistance today, the speakers suggest, is when people interpret partial victories as total failures, sapping motivation and allowing constraining norms to erode. The broader lesson: even when resistance does not prevent a formal loss, it can still shape how power is exercised afterward.
+## How Failed Resistance Still Wins
+
+Palmer draws a key lesson from the Florentine example.
+- In simplistic terms, one might say the Florentine republic “lost”: the republic fell, and a duke took over, ending the old system.
+- Yet, because the republic’s supporters fought so hard and the people deeply believed in it, their resistance left a lasting constraint on the new regime.
+
+As a result:
+- The people of Florence retained more rights, notably around property and entrenched traditions.
+- The duke had to act less tyrannically than rulers like the d’Este, constantly mindful of potential backlash.
+
+Palmer concludes that this is “a great example of how even when resistance loses, resistance wins.”
+- Resistance can fail in its immediate goal yet still shape the behavior and limits of those who come to power.
+
+## Modern Parallel: Republican Expectations in the United States
+
+Dwarkesh Patel extends the argument to contemporary politics.
+- He posits a question: what are the odds that the United States becomes a “Putinist” country in a few decades?
+
+He suggests these odds are low for reasons analogous to Florence’s experience.
+- On paper and by precedent, the U. S. presidency is very powerful.
+- Yet public expectations of republican governance and resistance to overt authoritarianism are strong.
+
+When presidents push boundaries and still manage to do something successfully, the visible resistance matters.
+- That resistance can demotivate successors from pushing further because they anticipate backlash.
+- In this way, norms and expectations constrain how far formal powers are actually used.
+
+Patel argues that the main factor weakening resistance in the U. S. is psychological.
+- People often treat partial victories as total failures, becoming discouraged.
+- This discouragement can erode ongoing resistance, even when prior resistance has meaningfully constrained power.
+
+The shared implication of Palmer’s historical example and Patel’s contemporary reflection is that resistance, even when it does not fully prevent a power grab, can still meaningfully shape and limit how that power is exercised.
 

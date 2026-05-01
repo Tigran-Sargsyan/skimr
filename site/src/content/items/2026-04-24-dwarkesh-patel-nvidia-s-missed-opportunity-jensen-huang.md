@@ -9,65 +9,54 @@ duration_seconds: null
 primary_theme: business
 secondary_theme: tech
 relevance: 8
-hook: Jensen Huang explains how Nvidia missed deeply funding Anthropic and what it learned.
-tldr: Jensen Huang argues that Anthropic’s reliance on non‑Nvidia accelerators is a one-off case driven by early financing deals, not a broad shift away from Nvidia. He says Nvidia once lacked both the capital and the appreciation of how much up‑front supplier investment AI labs like Anthropic and OpenAI require, which led hyperscalers to fund them in exchange for using their own chips. Huang calls this Nvidia’s major “miss,” insists alternatives still must outperform Nvidia to matter, and says he will not repeat the mistake, now eagerly investing in leading AI labs to help them scale on Nvidia hardware.
-caveats: Skip it if you’re looking for hands-on engineering detail, because this is mostly strategic and economic framing rather than a deep technical teardown of chips or systems.
-pitch: If you care about how AI infrastructure really gets funded and why accelerator ecosystems win or lose, this gives you Jensen Huang’s own read on Nvidia’s biggest strategic miss and the economics behind Anthropic, TPUs, and custom silicon.
+hook: Jensen Huang explains why NVIDIA missed Anthropic and how it’ll avoid repeating that.
+tldr: Jensen Huang argues that Anthropic’s Broadcom and Google TPU deals are an exception, not a broad shift away from NVIDIA. He says most major labs still rely overwhelmingly on NVIDIA but some must experiment with alternatives, which he welcomes. Huang admits NVIDIA underestimated how dependent frontier labs are on multi‑billion‑dollar strategic funding and lacked the capital and insight to back Anthropic early, a mistake he plans not to repeat with OpenAI and others.
+caveats: Skip it if you want deep technical architecture or eval/failure-mode detail, because this is mostly strategic and market-level rather than an engineering postmortem.
+pitch: If you care about how frontier AI actually gets built and funded, this gives you Jensen Huang talking through the real economics behind NVIDIA, TPU/ASIC competition, and why labs now need supplier capital as much as chips.
 ---
 
 ## Key Points
 
-- Anthropic’s large TPU and Broadcom deals are described as a unique, company-specific case rather than evidence of a broad industry movement away from Nvidia GPUs.
-- Huang claims TPU growth and related training growth are effectively 100% attributable to Anthropic, implying limited overall TPU traction without that single customer.
-- OpenAI and other top labs are still characterized as being “vastly Nvidia,” even if they experiment with AMD or build in‑house accelerators like Titan.
-- Huang is not bothered by customers trying other accelerators, arguing experimentation ultimately reinforces Nvidia’s relative strength if rivals underperform.
-- He emphasizes that simply deciding to build an AI accelerator ASIC is insufficient; the resulting product must be better than Nvidia’s, which he argues is very difficult given Nvidia’s scale and yearly performance leaps.
-- Huang dismisses the idea that custom ASICs can be much cheaper by accepting worse performance, noting ASIC vendors themselves retain high margins (around mid‑60%), so savings versus Nvidia’s ~70% margins are limited.
-- Historically, Nvidia lacked the financial ability to make multi‑billion‑dollar upfront investments into foundation model labs like Anthropic in exchange for committed GPU usage.
-- Huang says he did not fully internalize that labs such as Anthropic and OpenAI needed massive supplier capital because traditional VCs would not fund $5–10 billion bets on speculative AI research labs alone.
-- This is the “miss” he identifies in hindsight as too modest in scale and commitment at the time, not recognizing they “had no other options.” It let hyperscalers like Google and AWS step in with huge investments tied to their own compute, pushing Anthropic’s workloads onto TPUs and other non‑Nvidia accelerators and allowing those alternatives to gain share entirely due to that financing structure.### Anthropic as exception, not trendHuang frames Anthropic’s heavy use of TPUs as an anomaly driven by its financing history.
-- He argues that without Anthropic there would be virtually no growth in TPU usage or TPU‑based training, suggesting that most other major AI workloads remain on Nvidia.
-- In contrast, he depicts OpenAI—despite AMD partnerships and its Titan project—as still predominantly running on Nvidia hardware and continuing deep collaboration.### Economics and difficulty of competing ASICsHuang challenges the logic that custom accelerators only need to be “within 70%” of Nvidia’s performance because Nvidia has high margins.
-- He claims ASIC providers like Broadcom also keep very high margins (around 65%), so users do not save dramatically on unit cost.
-- Given Nvidia’s scale and annual “big leaps,” he asserts designing an ASIC that is actually better than Nvidia is “not sensible” and very hard; many announced ASIC projects have been canceled.### Nvidia’s missed strategic opportunity and new stanceLooking back, Huang says Nvidia could not and did not write the multibillion‑dollar checks hyperscalers did to fund Anthropic early in exchange for locked‑in compute usage.
-- He now sees that as a major strategic miss tied to underestimating both the capital intensity and funding constraints of foundation AI labs.
-- He believes Nvidia might have grown much faster had it funded Anthropic earlier.
-- Going forward, he vows not to repeat this mistake, saying he is now “delighted” to invest in OpenAI and, when possible, Anthropic, viewing direct capital support as essential to helping leading labs scale on Nvidia infrastructure.
+- Jensen Huang claims Anthropic is a unique driver of TPU growth rather than evidence of a broad ASIC trend.
+- He asserts that without Anthropic, there would be essentially no TPU or training growth attributable to TPUs.
+- Huang maintains that OpenAI remains predominantly on NVIDIA despite exploring AMD and custom accelerators.
+- He argues that building an ASIC is easy to announce but very hard to make superior to NVIDIA’s offerings.
+- He notes ASIC providers like Broadcom also enjoy high margins, so switching does not automatically yield huge savings.
+- Huang says NVIDIA historically lacked the ability to make multi‑billion‑dollar strategic investments in labs like Anthropic.
+- He acknowledges he failed to internalize that AI foundation labs require supplier funding because VCs will not risk $5–10 billion alone.
+- Huang states NVIDIA will not repeat this mistake and is now eager to invest in and scale labs like OpenAI and Anthropic.
 
 ## Notes
 
-## Anthropic and TPU use as an exception
+## Context: Question About Switching Away from NVIDIA
 
-- Anthropic’s recent multi‑gigawatt deal with Broadcom and Google for TPUs is presented as a special case, not a general industry realignment.
-- Huang asserts that TPU growth is essentially “100% Anthropic,” and similarly that training growth on TPUs is also entirely driven by Anthropic.
-- Without Anthropic, he claims there would be no real TPU or TPU‑training growth, implying that most serious AI training still resides on Nvidia hardware.
+The interviewer challenges Jensen Huang with the observation that major AI labs, once almost entirely on NVIDIA, are now using alternative accelerators. Anthropic recently announced a multi‑gigawatt deal with Broadcom and Google for TPUs, with TPUs becoming the majority of their compute. Google itself also relies heavily on TPUs. The question is how to reconcile these moves with NVIDIA’s claims of superior price‑performance and efficiency.
 
-## Other labs: still predominantly Nvidia
+## Anthropic as a Special Case, Not a General Trend
 
-- While recognizing that OpenAI has deals with AMD and is developing its own Titan accelerator, Huang states they are still “vastly Nvidia.”
-- He expects Nvidia and OpenAI to continue doing “a lot of work together,” suggesting Nvidia remains the primary compute provider even as OpenAI experiments with alternatives.
-- Huang is not offended by customers trying other accelerators; he sees experiments as a way for them to benchmark and ultimately appreciate Nvidia’s performance.
+Huang insists the premise that there is a broad move away from NVIDIA to alternative accelerators is wrong. He frames Anthropic as a unique case rather than a trend. He claims that essentially all TPU growth, and all TPU‑based training growth, is attributable to Anthropic specifically. Without Anthropic, he suggests, TPU growth would be negligible. He argues there is not an “abundance” of ASIC opportunities driving a broad competitive wave; instead, there is “only one Anthropic.”
 
-## Economics and difficulty of custom ASICs
+## OpenAI, AMD, and Custom Chips
 
-- Huang argues that building an AI ASIC is not enough; the resulting chip must be better than Nvidia’s GPUs to be viable, which he portrays as extremely hard.
-- He highlights Nvidia’s scale and “velocity,” emphasizing that Nvidia delivers large performance improvements every year.
-- The notion that a custom ASIC merely needs to be within 70% of Nvidia’s performance due to Nvidia’s high margins is rejected.
-- He notes Nvidia’s margins are around 70%, but ASIC vendors (e.g., Broadcom) also enjoy very high gross margins, around 65%, so end users do not gain as much cost advantage as presumed.
+The interviewer points out that OpenAI has deals with AMD and is building its own Titan accelerator. Huang responds that OpenAI is still “vastly NVIDIA” in terms of actual usage. He emphasizes that NVIDIA and OpenAI still do a lot of work together. He says he is not offended that customers try other accelerators. Experimentation by customers is framed as healthy, since it lets them benchmark and, in his view, be reminded how good NVIDIA’s products are. He underscores that NVIDIA must continuously earn its position.
 
-## Nvidia’s missed opportunity with Anthropic
+## Difficulty and Economics of Competing ASICs
 
-- Huang says that, historically, Nvidia did not have the ability to make multi‑billion‑dollar investments into labs like Anthropic.
-- He now realizes he failed to deeply internalize how hard it is to build a foundation AI lab such as Anthropic or OpenAI.
-- These labs required huge upfront capital from their compute suppliers because traditional venture capitalists would not risk $5–10 billion on speculative AI labs.
-- As a result, Google and AWS stepped in with major early investments, with the understanding that Anthropic would use their compute (e.g., TPUs).
-- Huang identifies this as his “miss”: not recognizing that labs “had no other options” and thus underestimating the strategic necessity of Nvidia acting as a capital provider.
+Huang notes many ASIC efforts have been canceled, implying that announcements do not equal competitive products. He argues that to matter, an ASIC must be better than NVIDIA, which he says is “not that easy” and “not sensible” given NVIDIA’s scale and pace. NVIDIA is, in his words, the only company “cranking it out every single year” with large performance leaps. The interviewer suggests the rival logic is that alternatives do not need to be better, just not more than 70% worse, because NVIDIA’s margins are so high. Huang counters that ASIC vendors like Broadcom also enjoy very high margins. If NVIDIA’s gross margin is around 70%, he estimates ASIC margins around 65%. He stresses that customers still “have to pay somebody,” so the margin gap is smaller than it might appear, and savings are not as large as people assume.
 
-## Changed strategy going forward
+## Why NVIDIA Missed Anthropic Early On
 
-- Huang says that even if he had perfectly understood the situation back then, Nvidia might not have been financially capable of writing checks at the required scale.
-- He believes that, had Nvidia been able to invest similarly, the company could have been as large then as it is now.
-- He asserts he will not repeat this mistake: he is now “delighted” to invest in OpenAI and to help them scale.
-- When Anthropic later approached Nvidia, he was also pleased to become an investor and support their scaling, once Nvidia was in a position to do so.
-- He now views such strategic investments in leading AI labs as essential to Nvidia’s future role in AI and science.
+When directly asked why Anthropic ended up on Broadcom and Google rather than NVIDIA, Huang provides a candid retrospective. He says that long ago NVIDIA did not have the ability to make the necessary strategic investments. He had not, at the time, fully internalized how difficult it would be to build a foundation AI lab like OpenAI or Anthropic. He now recognizes such labs require huge investments from their compute suppliers. According to Huang, venture capitalists would not put in $5–10 billion to fund a speculative AI lab hoping it might become an Anthropic. Therefore, the labs “really had no other options” except to get capital and compute together from cloud providers like Google and AWS.
+
+Google and AWS were in a position to invest multi‑billion‑dollar sums into Anthropic early on. In return, Anthropic used their compute, such as TPUs. Huang frames this as the key dynamic behind Anthropic’s heavy TPU use, rather than superior performance or cost alone. He admits his mistake was not fully appreciating this funding‑compute linkage and the necessity of supplier capital.
+
+## Capital Constraints and Strategic Shift
+
+Huang also stresses that even if he had perfectly understood the need for such investments then, NVIDIA was not financially able to provide them at that time. NVIDIA simply was not yet in a position to make multi‑billion‑dollar bets on a single AI lab. He labels this both a miss in understanding and a constraint of the period.
+
+Now, he says, the situation has changed. NVIDIA is willing and able to make such investments and does not intend to repeat the earlier mistake. Huang says he is delighted to invest in OpenAI and to help it scale, and he believes that supporting such labs is essential. He also says that when Anthropic later came to NVIDIA, he was delighted to invest and help them scale as well. He adds that if he could rewind time and NVIDIA had been as large then as it is now, he would have been eager to do the same earlier.
+
+## Overall Framing
+
+Across the clip, Huang’s core message is that alternative accelerators are driven by a small number of unique, strategically funded relationships, not by a broad market rejection of NVIDIA. He emphasizes NVIDIA’s technological lead, the economic reality of high margins across all chip providers, and the importance of supplier‑funded partnerships for frontier AI labs. He acknowledges a specific strategic miss around Anthropic, attributes it to past capital limits and misjudged lab funding dynamics, and presents NVIDIA’s current investment posture as the corrective move.
 

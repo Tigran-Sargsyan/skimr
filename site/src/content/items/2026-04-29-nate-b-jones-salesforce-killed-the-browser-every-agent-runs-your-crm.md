@@ -8,122 +8,361 @@ published_at: '2026-04-29T14:01:07Z'
 duration_seconds: null
 primary_theme: tech
 secondary_theme: business
-relevance: 6
-hook: Stop asking which AI to switch to; start deciding what to layer where.
-tldr: The video argues that AI agents should be evaluated as infrastructure layers, not just as models or flashy demos, using a five-question filter focusing on integration, openness, data access, ecosystem, and stackability. Applying this filter to ChatGPT Workspace Agents, Salesforce Headless 360, Microsoft Copilot Wave 3, Kimi K 2.6, and Perplexity Personal Computer shows each fits a specific job shape rather than being a universal default. Teams should stop chasing “one best agent,” keep a sensible default, and deliberately route different kinds of work to different agent layers based on where data, workflows, and governance actually live.
-caveats: Skip it if you want hard technical details or benchmark evidence, because it reads more like strategic commentary on vendor positioning than an engineering deep dive.
-pitch: If you care about how agent products fit into real stacks, this gives you a useful framework for thinking about integration, data access, and governance instead of chasing model hype.
+relevance: 7
+hook: Use a five-question filter to cut through the AI agent hype and pick infrastructure.
+tldr: The video argues that most AI agent launches are noise unless they improve infrastructure around your existing tools and data. It offers a five-question filter focused on integration, openness, data access, ecosystem, and stackability. Using this lens, it evaluates Workspace Agents, Salesforce Headless 360, Copilot Wave 3, Kimmi K 2.6, and Perplexity Personal Computer, then reframes “switching” tools as layering the right products for each job.
+caveats: Skip it if you want deep technical architecture, eval data, or production scars; this sounds more like strategic product commentary than hands-on systems analysis.
+pitch: You work on LLM agents and AI infrastructure, so this is worth your time as a fast framework for separating real agent plumbing from hype and for thinking about how agents should layer on top of existing tools, permissions, and data graphs.
 ---
 
 ## Key Points
 
-- Agent launches are overwhelming, so teams need a clear filter to decide which ones merit attention rather than chasing every new model or demo.
-- The key shift is from comparing model quality to assessing agent infrastructure: what tools an agent can reach, how it composes with others, and what data layer it sits on.
-- A five-question filter screens launches: does it plug into existing tools, allow other agents to build on it, access important data, have a growing ecosystem, and let you stack agents on top.
-- ChatGPT Workspace Agents are shared, cloud-run agents for recurring, cross-tool team workflows in ChatGPT and Slack, not a replacement for every agent category.
-- Salesforce Headless 360 exposes nearly all Salesforce capabilities via APIs, MCP tools, and CLI so agents and coding tools can operate directly on CRM data without the browser UI.
-- Salesforce’s move effectively turns it into infrastructure for the agent economy, letting many external agents (Claude, Cursor, Workspace Agents, Slack agents) act inside Salesforce with proper permissions.
-- Microsoft Copilot Wave 3 (Co-work + Work IQ) tightly integrates agent execution with the Microsoft 365 graph, giving strong native data and governance advantages but a relatively closed ecosystem and weak fit for serious coding teams.
-- Kimi K 2.6 is an open-weights, long-horizon multimodal agent model with a 300-agent swarm architecture, valuable mainly for developer teams who can self-host and build their own infrastructure, not as a typical enterprise SaaS product for business users.
-- Perplexity Personal Computer on Mac turns Perplexity into a local, research-focused digital worker that can search, browse, edit local files, and orchestrate workflows to produce artifacts like reports and slide decks.
-- Each tool has a “best-fit” job shape: Workspace Agents for shared cross-tool workflows, Salesforce for RevOps and CRM logic, Copilot for Microsoft-native knowledge work, Kimi for self-hosted agent infra, and Perplexity for research-heavy deliverables.
-- Anthropic’s Claude strategy is increasingly layered: direct product, embedded engine inside others (Microsoft, Salesforce, Perplexity), and managed infrastructure for teams needing agent runtimes without building all plumbing.
-- The classic “when should I switch from X to Y?” framing is wrong; the market is moving toward layered stacks where multiple agents and wrappers coexist and are chosen based on data graph and workflow, not just model quality.
-- Teams should keep a capable default agent where model-centric reasoning is primary, then selectively use wrappers or different models when they provide unique data access, workflow integration, governance, or open-weight control.
-- Switching wholesale is costly due to non-portable prompts, memories, and team habits; the real skill is routing work correctly across layers to avoid both tool sprawl and misfit usage.
-- Agent products are not a single category; they span model frontends, workflow builders, enterprise data layers, open-weight infra, research workers, and control planes, so they should not all be compared on one flat chart.
-- Going forward, teams that filter for infrastructure, ecosystems, stackability, and data access—and then match work shape to tool shape—will compound faster than those chasing headline benchmarks or demos.
+- Most important agent launches are infrastructure that extends existing tools, not flashy standalone destinations.
+- A five-question filter evaluates agents by integration, openness, data access, ecosystem strength, and stackability.
+- Workspace Agents are OpenAI’s answer for shared, repeatable cross-tool workflows inside ChatGPT and Slack.
+- Salesforce Headless 360 exposes the CRM stack as APIs and MCP tools so any agent can operate Salesforce data.
+- Microsoft Copilot Wave 3 is powerful for Microsoft 365-native work because of deep graph and permissions access.
+- Kimmi K 2.6 mainly matters as open-weights agent infrastructure for dev teams, not as a hosted enterprise product.
+- Perplexity Personal Computer targets research-heavy workflows that end in artifacts, enhanced by local Mac integration.
+- The real strategy is layering specialized agent products around data graphs and workflows, not switching to one default agent.
 
 ## Notes
 
-## Core Reframe: From Switching to Layering
+## Why You Need a Filter for Agent Hype
 
-- The AI landscape is flooded with new agents, models, and demos, leaving teams exhausted rather than excited.
-- The important shift is away from “Which model is best?” toward “Which infrastructure and data layers actually matter for our work?”
-- Instead of asking when to *switch* agents, treat agents as *layers* that sit on top of your existing tools and data graphs.
+Teams are overwhelmed by constant AI agent launches, benchmarks, and polished demos, and the dominant feeling is exhaustion, not excitement. The critical question is no longer “what launched this week?” but “which of these deserve my team’s attention?”
+
+The core claim: the conversation has shifted from model quality to infrastructure. What matters is not the loudest demo or best benchmark, but which launches change:
+- What your existing tools can reach
+- What your agents can actually do
+- How easily your team can stack and combine systems
+
+The framing move: stop thinking in terms of switching from one agent to another and start thinking in terms of layering different products and infrastructure around your existing work.
+
+---
 
 ## The Five-Question Filter
 
-1. **Does it plug into tools we already use?**
-   - Infrastructure that reaches existing systems is valuable; new destinations that demand migration are costly and often not worth it.
-2. **Can other agents build on it?**
-   - Open APIs/MCP/CLIs = infrastructure; closed, self-contained experiences = features. Features commoditize; infrastructure compounds.
-3. **Does it own or access data we care about?**
-   - Agent usefulness is downstream of data access. A weaker model with full org history can outperform a stronger model with no context.
-4. **Is there an ecosystem forming?**
-   - Marketplaces, SDKs, partner programs, consistent shipping are signals a platform will persist and compound.
-5. **Can we stack agents on top?**
-   - Composable layers that let multiple agents orchestrate together are far more valuable than yet another siloed agent.
+The speaker uses a five-question filter to evaluate any agent launch:
 
-Most launches fail this filter; the few that pass deserve real evaluation time.
+1. **Does it plug into tools my team already uses, or force a new environment?**  
+   Infrastructure that reaches into where work already lives is valuable; new destinations requiring migration are costly. Migration is historically the most expensive ask in SaaS.
+
+2. **Can other agents build on top of it, or is it closed?**  
+   If you can point tools like Claude Code, CodeEX, Cursor, or internal agents at it, it’s infrastructure. Closed, standalone experiences are features. Features commoditize; infrastructure compounds.
+
+3. **Does it own or access data I care about?**  
+   Agent quality is downstream of data access. A mediocre agent with full customer history can beat a brilliant agent with empty context, which explains why Copilot is potent inside 365 and Salesforce inside revenue orgs.
+
+4. **Is there an ecosystem forming around it?**  
+   Ecosystems show staying power: marketplaces, SDKs, partner programs, dev tools, regular releases. A product with a real marketplace differs from a press-release-only launch.
+
+5. **Can I stack my agents on top?**  
+   Composable releases that let you layer agents are far more valuable than standalone agents that just add one more point solution to evaluate.
+
+Applied rigorously, this filter makes most launches ignorable. Those that pass merit a serious afternoon of evaluation.
+
+---
 
 ## Case 1: ChatGPT Workspace Agents
 
-- Shared, code-executing agents for **recurring cross-tool workflows** (e.g., weekly metrics, risk screening, request triage) run in the cloud and surface in ChatGPT or Slack.
-- They move from “personal assistant” to “team reusable work unit.”
-- Strong fit when:
-  - Work is recurring, cross-tool, and naturally lives in ChatGPT/Slack.
-  - Team needs shared directory, permissions, scheduling, approvals.
-- Weaker fit when:
-  - Work is deeply native to Salesforce or Microsoft 365 (those have stronger data graphs).
-  - The job is advanced coding, where specialist coding agents matter more.
+Workspace Agents are OpenAI’s shift from personal assistants to reusable team work units.
 
-## Case 2: Salesforce Headless 360 (Salesforce ‘kills the browser’)
+**What they are:**
+- Shared, CodeEX-powered agents for teams
+- Running in the cloud
+- Able to work across connected tools
+- Accessible via ChatGPT or Slack
+- Schedulable and suited to repeatable business workflows, not one-off chats
 
-- Salesforce exposes almost all capabilities as APIs, MCP tools, or CLI, so agents and coding tools can operate directly on CRM data without using the browser UI.
-- Includes:
-  - ~60 MCP tools, ~30 preconfigured coding skills, support for major coding agents, and an experience layer that renders outputs across Slack, Teams, ChatGPT, Claude, Gemini, etc.
-  - Agent Exchange marketplace and a builder fund to grow the ecosystem.
-- This effectively makes Salesforce **agent infrastructure** for RevOps and CRM: any compatible agent can now read/write CRM data under Salesforce’s trust, permissions, and business logic.
-- Scores highly on the filter: plugs into existing orgs, is open to other agents, owns critical revenue data, has ecosystem momentum, and is built for stacking.
+**Conceptual shift:** from “I have a personal helper” to “our team has reusable agents,” e.g.:
+- Product feedback routing
+- Weekly metrics reporting
+- Risk screening
+- Software request triage
 
-## Case 3: Microsoft Copilot Wave 3 (Co-work + Work IQ)
+These workflows are hard because they span Slack, email, docs, sheets, ticketing systems, and human memory. Workspace Agents simplify automation across that mess.
 
-- **Co-work**: long-running, multi-step agent execution integrated into Microsoft 365, built with Anthropic-style agent tech.
-- **Work IQ**: the data layer giving Copilot access to email, meetings, chats, files, SharePoint, identity, permissions, org context.
-- Strengths:
-  - Deep, native access to the Microsoft 365 graph, strong governance and permissions.
-  - Ideal for knowledge work primarily inside Outlook, Excel, Teams, SharePoint, PowerPoint.
-- Weaknesses:
-  - Relatively closed to external agent frameworks.
-  - Not suited for heavy production engineering workflows (teams prefer dedicated coding agents).
+**Where they fit the filter well:**
+- Strong for **recurring, cross-tool workflows** initiated from ChatGPT or Slack
+- Good when conversational builders, Slack surfaces, cloud execution, permissions, approvals, and shared directories matter more than direct control of systems of record
 
-## Case 4: Kimi K 2.6 (Open-Weights Swarm Agent Model)
+**Where they’re weaker:**
+- Workflows deeply native to Salesforce: Salesforce has data advantage
+- Workflows deeply native to Microsoft 365: Copilot has data advantage
+- Frontier coding work: coding agents themselves matter more than the workspace shell
 
-- Open-weights multimodal agent model under a modified MIT license with a **300-agent swarm** architecture and up to ~4,000 steps.
-- Strong benchmark performance for coding and long-horizon agentic tasks.
-- Best fit:
-  - Developer teams able to self-host, fine-tune, and build their own agent infrastructure, wanting to avoid closed-lab lock-in.
-- Poor fit for typical Western enterprise business users as a hosted SaaS tool due to data trust, governance, and integration gaps.
+The right framing: Workspace Agents don’t replace all agents; they are OpenAI’s best answer for shared, repeatable, cross-tool workflows run from ChatGPT or Slack.
+
+---
+
+## Case 2: Salesforce Headless 360 – “Salesforce Killed the Browser”
+
+Headless 360 is easy to overlook because it sounds like plumbing, but its importance is precisely that it is plumbing.
+
+**Core move:** Salesforce is exposing essentially every major capability as:
+- APIs
+- MCP tools
+- CLI commands
+
+Result: the browser UI is no longer the only way to use Salesforce. Agents and tools can now:
+- Reach into Salesforce directly
+- Use live org context in coding agents
+- Trigger workflows without human clicks
+
+Parker Harris framed the goal as: “Why should you ever log into Salesforce again?” Headless 360 is the answer.
+
+**Concrete elements and numbers:**
+- 60+ new MCP tools
+- 30+ preconfigured coding skills
+- Support for Claude Code, Cursor, CodeEX, Windsurf
+- An experience layer decoupling what an agent does from where output appears (Slack, mobile, Teams, ChatGPT, Claude, Gemini, any MCP client)
+- Agent Exchange: a marketplace combining Slack apps, Agentforce agents, tools, MCP servers
+- A builder fund backing the ecosystem
+
+**Filter evaluation:**
+- Plugs into an existing system where enterprises already live (CRM/RevOps)
+- Explicitly open to external agent frameworks
+- Owns the data revenue teams care about (customers, pipeline, workflows, permissions)
+- Has a real ecosystem and funding
+- Designed for stacking other agents on top
+
+This is Salesforce attempting to be **infrastructure for the agent economy**, not just shipping an agent.
+
+**Implications for teams running RevOps on Salesforce:**
+- The question shifts from “Agentforce vs Workspace Agents for CRM?” to “Which existing agents can now do CRM work, since Salesforce exposed its data and logic?”
+- Many agents may now:
+  - Build Salesforce apps with live data
+  - Update opportunities via permissions-respecting APIs
+  - Trigger Salesforce flows
+  - Act on CRM data from Slack without copy-paste
+
+A key detail: Agentforce 5 uses Claude Sonnet 4.5 as the default coding model, with GPT‑4.5 (GPT‑5 in video language) as an option. This exemplifies Anthropic’s strategy: not just a product, but an embedded agent layer inside others’ stacks.
+
+---
+
+## Case 3: Microsoft Copilot Wave 3 (Co‑work and Work IQ)
+
+Copilot’s significance is often underestimated in agent conversations.
+
+**Two key pieces:**
+
+1. **Copilot Co‑work** – long-running, multi-step agent execution inside Microsoft 365, built in collaboration with Anthropic to bring “Claude-style” agent behavior into the Copilot canvas.
+
+2. **Work IQ** – the data layer, giving Copilot:
+   - Email
+   - Meetings
+   - Chats
+   - Files
+   - SharePoint pages
+   - Identity
+   - Permissions
+   - Org context
+
+The point and moat is data access: Copilot doesn’t just see files via a connector; it operates within the organizational graph and identity system of Microsoft 365.
+
+**Filter perspective:**
+- Very strong for Microsoft 365-native companies on data access, permissions, and governance
+- Especially strong when work lives in Excel, Outlook, SharePoint, Teams, PowerPoint, and adjacent tools
+
+**Weaknesses:**
+- Less open to external agent frameworks compared to Salesforce’s MCP approach
+- Ecosystem is more closed
+- Not attractive for serious production engineering workflows; engineering teams prefer tools like CodeEX or Claude Code
+
+So Copilot Wave 3 **passes the filter** for Microsoft 365-centric, non-production-engineering workflows, and **fails** for organizations needing cross-ecosystem composability or heavy coding agent infrastructure.
+
+The right question is not “Is Copilot good?” but “For which shapes of work is Copilot the right layer?”
+
+---
+
+## Case 4: Kimmi K 2.6 – Open-Weights Agent Infrastructure
+
+Kimmi K 2.6 is a technically impressive open-weights model from Moonshot, but its strategic relevance is different from enterprise SaaS products.
+
+**What it is:**
+- Open-weights model under a modified MIT license
+- Framed as a native multimodal agentic model
+- Built for long-horizon coding, design, autonomous execution, and swarm orchestration
+- Headline: swarm architecture of 300 sub-agents coordinating across up to 4,000 steps
+- Strong coding and agentic benchmarks
+- Self-hostable, enabling teams to keep data local and avoid closed providers
+
+**Filter evaluation for typical enterprise buyers:**
+- Does not own your work graph
+- Not embedded in 365 or Salesforce
+- Lacks the Western enterprise connector story
+- Not solving, for most companies, the “route recurring work through our existing tools” problem
+
+Instead, Kimmi 2.6 solves a **developer infrastructure problem**: giving dev teams open-weight, long-horizon agent capabilities they can run themselves.
+
+**Two distinct user profiles:**
+- **Self-hosted dev teams:** Kimmi is compelling as infrastructure; open weights, autonomy, inspectability, and freedom from closed labs matter.
+- **Casual hosted users:** For a business team considering a hosted Kimmi product for sensitive work, the deciding factors are trust, governance, data boundaries, connectors, and fit with their environment—not raw benchmark scores. Here Kimmi is usually not the right answer.
+
+Strategic takeaway: open-weight agent models are advancing fast outside Western labs, giving capable teams credible new options. But for immediate sales/ops/finance/product-team use, Kimmi is generally not the default tool to evaluate.
+
+---
 
 ## Case 5: Perplexity Personal Computer (Mac)
 
-- Evolves “Perplexity Computer” into a local **digital worker**:
-  - Local file access and editing, local browsing, voice orchestration, deeper background task control.
-  - Uses Claude Opus 4.7 as default orchestrator.
-- Strong for **research-heavy tasks** that end in an artifact: market/competitive research, sales prospecting, financial analysis, doc review, ops reports.
-- Weaker for:
-  - Team-governed recurring workflows needing structured ownership.
-  - Work fully embedded in Microsoft 365 or Salesforce graphs.
+Perplexity Computer already existed as a digital worker but felt cloud-bound and detached from the user’s actual machine.
 
-## Anthropic / Claude as a Layered Strategy
+**Problem before the Mac rollout:**
+- Strong search, reasoning, and work production
+- Weakness: did not fully live on the device; lacked deep local file and app access
 
-- Claude appears in three ways:
-  1. **Direct product** (Claude chat, Claude Code).
-  2. **Embedded engine** in others (Microsoft Copilot, Salesforce Agentforce, Perplexity).
-  3. **Managed agent infrastructure** (Claude Managed Agents) for teams needing runtimes without building all infra.
-- The question becomes: which wrapper around Claude (or any model) fits the job—direct, embedded, or managed?
+**What the Mac “Personal Computer” adds:**
+- Local file editing
+- Local computer use
+- Local browsing through Comet
+- Voice orchestration
+- Deeper background control of work
 
-## How to Decide: Three Routing Questions
+Perplexity made Claude Opus 4.7 the default orchestrator model, with other model options available. The product category crystallizes as a **digital worker** that:
+- Researches and reasons
+- Browses
+- Edits files
+- Creates artifacts
+- Moves across connected apps
 
-1. **Stay in your default agent when** the model is central and integration is secondary (coding, long-context reasoning, custom workflows you control directly).
-2. **Use a wrapper running the same model when** it gives you unique data/workflow integration you can’t replicate (e.g., Copilot with Work IQ, Salesforce with Claude inside, Perplexity with Claude orchestrating research and artifact creation).
-3. **Use a different model/product when** its surrounding product, graph, and governance outweigh marginal model differences (e.g., Workspace Agents in Slack, Google Workspace with Gemini, self-hosted Kimi for infra control).
+**Filter evaluation:**
+- Strong on connectivity and chaining: research, analysis, docs, slides, email drafts, code, schedules, follow-ups
+- Stronger now on local access via Mac integration
+- Moderate on ecosystem and team-level governance; it’s not a Slack-native shared workflow system or an embedded enterprise graph like Copilot or Salesforce MCP
 
-## Practical Guidance and Literacy
+**Where it shines:**
+- Research-heavy work that ends in an artifact, e.g.:
+  - Competitive intelligence
+  - Market research
+  - Sales prospecting
+  - Financial analysis
+  - Document review
+  - Weekly operations reports
 
-- Switching wholesale is expensive: prompts, memory, context, and habits don’t transfer cleanly.
-- The costly mistake isn’t having multiple tools; it’s routing work to the wrong tool.
-- Agents are heterogeneous (model frontends, workflow builders, data layers, infra, research workers, control planes), so don’t compare them as if they’re one flat category.
-- Use the five-question filter, prioritize infrastructure/stackability/data access, and route each task to the tool whose *shape* matches the work’s *shape*—that routing judgment is the key skill of the agent era.
+**Where it falls short:**
+- Shared, recurring team processes needing governance, ownership, and repeatability
+- Deeply native 365 or Salesforce workflows where the internal graph matters more than external research
+
+Perplexity is best viewed as an artifact-producing research worker, not an enterprise control plane.
+
+---
+
+## Matching Tool to Job: Routing Work Instead of Forcing One Product
+
+Across these five examples, each tool is suited to specific job shapes:
+- **Workspace Agents:** shared, recurring cross-tool workflows in ChatGPT/Slack
+- **Salesforce Headless 360:** agent access to CRM data, business logic, and RevOps infrastructure
+- **Copilot Co‑work:** Microsoft-native knowledge work where Work IQ’s graph and permissions are decisive
+- **Kimmi K 2.6:** open-weight agent infrastructure for teams capable of self-hosting and building their own stack
+- **Perplexity Personal Computer:** research-heavy workflows that culminate in a deliverable
+
+Many teams mismanage this by buying one license and forcing it to cover all use cases, to avoid adding tools. The real cost, however, is **misrouting the work**, not having multiple tools.
+
+Examples of better routing:
+- Research-heavy deliverable → Perplexity: competitor analysis, news synthesis, market mapping, draft reports, human review
+- Microsoft 365-centric org → Copilot: operate in the native emails, meetings, docs, sheets, and sites
+- Coding/model-centric work → direct Claude, Claude Code, CodeEX, Cursor, or similar coding-centric environments
+- RevOps on Salesforce → Headless 360: let many agents act inside Salesforce where customer and pipeline data already live
+- Shared cross-tool workflows in ChatGPT or Slack → Workspace Agents, especially when needing scheduling, shared ownership, and iterative improvement
+
+The skill to develop is routing work to the right agent layer rather than standardizing on a single agent for everything.
+
+---
+
+## The “Switching” Question Is Really About Layers
+
+Teams keep asking “When should I switch from Claude/ChatGPT/Copilot/Gemini?” That question is misleading because the market is moving toward layers, not a single default agent.
+
+Anthropic’s trajectory illustrates this layering:
+- **Direct Claude:** model is the product
+- **Embedded Claude:** hidden inside other vendors’ products that own workflows and data (e.g., Copilot Co‑work, Salesforce Agentforce, Perplexity Computer)
+- **Managed Claude (Claude Managed Agents):** Anthropic runs the agent infrastructure layer for teams building long-running agents, without chat being the main interface
+
+So often the right question is “Which wrapper around Claude is right for this job?” The same logic applies for other providers.
+
+---
+
+## Three Practical Questions for Layering
+
+Instead of “switching,” use three questions to decide how to use models and wrappers:
+
+### 1. When should you stay in your default agent’s direct product?
+
+Stay direct when the model is the center of the work and integrations are secondary, such as:
+- Coding
+- Long-context reasoning
+- Novel research
+- Custom agents where you own workflow logic
+- Tasks requiring direct control over model behavior
+
+For Claude users, this explains why Claude Code is crucial for engineering teams. For ChatGPT users, direct ChatGPT or CodeEX is appropriate for open-ended reasoning. For Copilot users, this is often when they should **leave** Copilot, because Copilot’s strength is integration more than the model itself.
+
+### 2. When should you use a different product that runs the same model?
+
+Use the wrapper when it provides data access or workflow integration you cannot realistically replicate yourself:
+- Copilot with Work IQ: Anthropic-style agent execution against the Microsoft 365 graph in a way connectors can’t match
+- Salesforce with Claude inside: inherits Salesforce metadata, business logic, trust, and permissions
+- Perplexity with Claude as orchestrator: gives a research-to-artifact workflow different from blank Claude chat
+
+Here you aren’t “switching from” the model; you’re **moving the model** into a product layer that has the right data fabric.
+
+### 3. When should you pick a product that uses a different model entirely?
+
+Use a different model when the product’s surrounding layer matters more than marginal model quality:
+- ChatGPT Workspace Agents for Slack-native recurring workflows, even if another model might write slightly better text
+- Google Gemini in Workspace for teams that live in Google’s graph
+- Self-hosted Kimmi K 2.6 for dev teams wanting open-weight agent capability without reliance on closed labs
+
+The model still matters, but the wrapper, graph, permissions, connectors, workflow surfaces, and ecosystem increasingly matter more.
+
+---
+
+## Switching Costs and the New Literacy
+
+Switching agents is costly:
+- Prompts do not transfer smoothly
+- Memory and context don’t port cleanly
+- Skills are more portable than before but not fully plug-and-play
+- Team habits around specifying work are fragile; moving tools can reset learning curves
+
+Therefore, don’t switch casually. Instead:
+- Keep your default where it excels
+- Add specialists where they clearly win
+- Build judgment about routing work according to task shape
+
+This judgment—knowing how to route tasks across layered agents and infrastructure—is described as the new literacy of the agent era.
+
+---
+
+## Final Framework: How to Evaluate Agent Launches This Year
+
+The key is to avoid lumping everything called an “AI agent” into one category or comparison chart. Agent launches span:
+- Model products
+- Workflow builders
+- Enterprise data layers
+- Open-weight infrastructure
+- Research workers
+- Wrappers around other models
+- Control planes for existing corporate systems
+
+They can’t be compared as if they’re solving the same job.
+
+Instead, use the five-question filter:
+1. Does it plug into tools your team uses?
+2. Does it allow other agents to build on top?
+3. Does it own or access data you care about?
+4. Is an ecosystem forming around it?
+5. Can you stack agents on top?
+
+If the answer is yes across these, the launch deserves attention. If not, it may still be impressive but likely isn’t for your team right now.
+
+So for the rest of the year:
+- Filter for **infrastructure over features**
+- Filter for **ecosystems over demos**
+- Filter for **stackability over walled gardens**
+- Filter for **data access over benchmarks**
+- Match the **shape of the work** to the **shape of the tool**
+
+Teams that master routing work across these layers will compound faster than those chasing whichever agent had the loudest launch.
 
