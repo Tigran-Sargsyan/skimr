@@ -99,7 +99,7 @@ def homepage_limit() -> int:
 
 
 def backfill_days() -> int:
-    return int(os.environ.get("SKIMR_BACKFILL_DAYS", "7"))
+    return int(os.environ.get("SKIMR_BACKFILL_DAYS", "3"))
 
 
 def model_for(stage: Literal["summarize", "classify", "score"]) -> str:

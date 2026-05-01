@@ -1,5 +1,35 @@
+import re
+
 from .client import parse_structured
 from .schemas import SummaryOutput
+
+# Strip suspect characters that some long-output models occasionally trail
+# with. Observed during bake-off: a gpt-5.1 key_point ended with hundreds of
+# U+FFFC OBJECT REPLACEMENT CHARACTERs. Also strip U+FFFD (REPLACEMENT) and
+# control chars except \n \t.
+_BAD_INLINE = re.compile(r"[￼�￾￿\x00-\x1F]")
+_BAD_BLOCK = re.compile(r"[￼�￾￿\x00-\x08\x0B\x0C\x0E-\x1F]")
+_WS = re.compile(r"\s+")
+
+
+def _clean_inline(text: str) -> str:
+    return _WS.sub(" ", _BAD_INLINE.sub("", text)).strip()
+
+
+def _clean_block(text: str) -> str:
+    # Preserve newlines / tabs for markdown bodies.
+    return _BAD_BLOCK.sub("", text).strip()
+
+
+def _sanitize(result: SummaryOutput) -> SummaryOutput:
+    result.hook = _clean_inline(result.hook)
+    result.tldr = _clean_inline(result.tldr)
+    result.key_points = [
+        kp for kp in (_clean_inline(p) for p in result.key_points) if len(kp) >= 5
+    ]
+    result.full_notes = _clean_block(result.full_notes)
+    return result
+
 
 SYSTEM_PROMPT = """You are summarizing a video transcript for a personal reading list. The user \
 prefers depth over brevity but does not want padding. Adapt length to the \
@@ -33,10 +63,11 @@ def summarize(*, model: str, reasoning_effort: str, title: str, author: str,
         duration_seconds=duration_seconds,
         transcript=transcript,
     )
-    return parse_structured(
+    result = parse_structured(
         model=model,
         reasoning_effort=reasoning_effort,
         messages=messages,
         response_format=SummaryOutput,
         stage="summarize",
     )
+    return _sanitize(result)
